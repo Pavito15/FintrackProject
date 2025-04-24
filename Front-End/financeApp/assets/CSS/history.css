@@ -1,0 +1,56 @@
+.history-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+  }
+  
+  .filter-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  
+  .filter-section input,
+  .filter-section select {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  .expense-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .expense-item {
+    background: #f9f9f9;
+    padding: 15px 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(0,0,0,0.05);
+  }
+  
+  .expense-item .left {
+    text-align: left;
+  }
+  
+  .expense-item .category {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .expense-item .note {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .expense-item .amount {
+    font-weight: bold;
+    color: #e74c3c;
+  }
+  
