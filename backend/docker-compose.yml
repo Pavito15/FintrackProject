@@ -1,24 +1,33 @@
+version: '3.8'
 services:
-  backend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      - DB_HOST=backend-db
-      - DB_PORT=3306
-      - DB_USER=fintrack_user
-      - DB_PASSWORD=fintrack_pass
-      - DB_DATABASE=fintrack
-    depends_on:
-      - backend-db
-
-  backend-db:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: fintrack
-      MYSQL_USER: fintrack_user
-      MYSQL_PASSWORD: fintrack_pass
+  api:
+    build: .
     ports:
-      - "3308:3306"
+      - "3000:3000"
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=fintrack
+      - TOKEN_SECRET=mysecret
+    depends_on:
+      - mysql
+    command: ["./wait-for-it.sh", "mysql:3306", "--", "npm", "start"]  # Esperar MySQL
+    restart: always
 
+  mysql:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fintrack
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
