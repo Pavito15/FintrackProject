@@ -14,7 +14,7 @@ exports.getMovement = (req, res) => {
     if (err) return res.status(500).json({ error: err });
     if (results.length === 0)
       return res.status(404).json({ message: "No encontrado" });
-    res.json(results[0]);
+    res.json(results);
   });
 };
 
@@ -37,6 +37,6 @@ exports.getMovements = (req, res) => {
     if (err) return res.status(500).json({ error: err });
     if (results.length === 0)
       return res.status(404).json({ message: "No encontrado" });
-    res.json(results[0]);
+    res.json(results);
   });
 };

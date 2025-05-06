@@ -1,5 +1,11 @@
 const dynamodb = require("../config/dynamodb");
-const { PutCommand } = require("@aws-sdk/lib-dynamodb");
+const {
+  PutCommand,
+  GetCommand,
+  QueryCommand,
+  UpdateCommand,
+  DeleteCommand,
+} = require("@aws-sdk/lib-dynamodb");
 const { randomUUID } = require("crypto");
 
 class Movement {
@@ -13,7 +19,9 @@ class Movement {
         type,
         description,
         amount,
+        created_at: new Date().toISOString(),
       };
+
       await dynamodb.send(
         new PutCommand({
           TableName: "Movements",
@@ -28,24 +36,90 @@ class Movement {
     }
   }
 
-  static getById(id, callback) {
-    console.log(`Voy a obtener el movimiento ${id}`);
-    callback();
+  static async getById(id, callback) {
+    try {
+      const result = await dynamodb.send(
+        new GetCommand({
+          TableName: "Movements",
+          Key: { id },
+        })
+      );
+
+      if (!result.Item) {
+        return callback(true, { message: "Movimiento no encontrado" });
+      }
+
+      callback(false, result.Item);
+    } catch (error) {
+      console.error(error);
+      callback(true, error);
+    }
   }
 
-  static getMovements(user_id, callback) {
-    console.log(`Voy a obtener los movimientos del usuario ${user_id}`);
-    callback();
+  static async getMovements(user_id, callback) {
+    try {
+      const result = await dynamodb.send(
+        new QueryCommand({
+          TableName: "Movements",
+          IndexName: "user_id-index", // asegúrate de tener un GSI por user_id
+          KeyConditionExpression: "user_id = :uid",
+          ExpressionAttributeValues: {
+            ":uid": user_id,
+          },
+        })
+      );
+
+      callback(false, result.Items || []);
+    } catch (error) {
+      console.error(error);
+      callback(true, error);
+    }
   }
 
-  static update(id, data, callback) {
-    console.log(`Voy a actualizar el movimiento ${id} con la data: ${data}`);
-    callback();
+  static async update(id, data, callback) {
+    try {
+      const updateExpressions = [];
+      const expressionAttributeValues = {};
+      const expressionAttributeNames = {};
+
+      for (const [key, value] of Object.entries(data)) {
+        updateExpressions.push(`#${key} = :${key}`);
+        expressionAttributeNames[`#${key}`] = key;
+        expressionAttributeValues[`:${key}`] = value;
+      }
+
+      const result = await dynamodb.send(
+        new UpdateCommand({
+          TableName: "Movements",
+          Key: { id },
+          UpdateExpression: `SET ${updateExpressions.join(", ")}`,
+          ExpressionAttributeNames: expressionAttributeNames,
+          ExpressionAttributeValues: expressionAttributeValues,
+          ReturnValues: "ALL_NEW",
+        })
+      );
+
+      callback(false, result.Attributes);
+    } catch (error) {
+      console.error(error);
+      callback(true, error);
+    }
   }
 
-  static delete(id, callback) {
-    console.log(`Voy a borrar el movimiento ${id}`);
-    callback();
+  static async delete(id, callback) {
+    try {
+      await dynamodb.send(
+        new DeleteCommand({
+          TableName: "Movements",
+          Key: { id },
+        })
+      );
+
+      callback(false, { message: "Movimiento eliminado correctamente" });
+    } catch (error) {
+      console.error(error);
+      callback(true, error);
+    }
   }
 }
 
