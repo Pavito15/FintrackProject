@@ -33,7 +33,7 @@ exports.deleteMovement = (req, res) => {
 };
 
 exports.getMovements = (req, res) => {
-  Movement.getMovements(req.params.id, (err, results) => {
+  Movement.getMovements(req.get("x-auth"), (err, results) => {
     if (err) return res.status(500).json({ error: err });
     if (results.length === 0)
       return res.status(404).json({ message: "No encontrado" });
