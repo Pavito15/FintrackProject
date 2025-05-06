@@ -1,7 +1,7 @@
 const Movement = require("../models/Movement");
 
 exports.createMovement = (req, res) => {
-  const user_id = req.get("x-auth");
+  const user_id = req.user_id;
   const data = { ...req.body, user_id };
   Movement.create(data, (err, result) => {
     if (err) return res.status(500).json({ error: err });
@@ -33,7 +33,7 @@ exports.deleteMovement = (req, res) => {
 };
 
 exports.getMovements = (req, res) => {
-  Movement.getMovements(req.get("x-auth"), (err, results) => {
+  Movement.getMovements(req.user_id, (err, results) => {
     if (err) return res.status(500).json({ error: err });
     if (results.length === 0)
       return res.status(404).json({ message: "No encontrado" });
