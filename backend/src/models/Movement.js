@@ -14,7 +14,7 @@ class Movement {
       const { type, description, amount, user_id } = data;
 
       const newMovement = {
-        id: randomUUID(),
+        id: randomUUID().replace(/-/g, ""),
         user_id,
         type,
         description,
