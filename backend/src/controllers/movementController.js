@@ -1,7 +1,7 @@
 const Movement = require("../models/Movement");
 
 exports.createMovement = (req, res) => {
-  const user_id = req.user_id;
+  const user_id = req.get("x-auth");
   const data = { ...req.body, user_id };
   Movement.create(data, (err, result) => {
     if (err) return res.status(500).json({ error: err });

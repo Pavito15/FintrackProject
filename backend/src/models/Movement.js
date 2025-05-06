@@ -5,7 +5,7 @@ const { randomUUID } = require("crypto");
 class Movement {
   static async create(data, callback) {
     try {
-      const { user_id, type, description, amount } = data;
+      const { type, description, amount, user_id } = data;
 
       const newMovement = {
         id: randomUUID(),
