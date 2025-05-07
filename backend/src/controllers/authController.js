@@ -6,19 +6,18 @@ require("dotenv").config();
 exports.loginWithToken = async (req, res) => {
   let token = req.get("x-auth");
   if (!token) {
-    res.status(404).send("Missing authentication");
-    return;
+    return res.status(404).send("Missing authentication");
   }
 
   try {
     jwt.verify(token, process.env.TOKEN_SECRET, function (err, decoded) {
       if (err) {
-        res.status(402).send("Token provided is not valid");
+        return res.status(402).send("Token provided is not valid");
       }
-      res.send(decoded);
+      return res.send(decoded);
     });
   } catch (error) {
-    res.status(500).send("Internal server error");
+    return res.status(500).send("Internal server error");
   }
 };
 
@@ -37,13 +36,13 @@ exports.login = async (req, res) => {
             },
             process.env.TOKEN_SECRET
           );
-          res.send({ token });
+          return res.send({ token });
         } else {
-          res.status(404).send("Bad password");
+          return res.status(404).send("Bad password");
         }
       });
-    } else res.status(404).send("Email not found");
+    } else return res.status(404).send("Email not found");
   } catch (error) {
-    res.status(500).send("Internal server error");
+    return res.status(500).send("Internal server error");
   }
 };

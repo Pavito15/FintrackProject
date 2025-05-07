@@ -5,7 +5,7 @@ exports.createUser = async (req, res) => {
 
   const response = await Users.create(data);
 
-  if (!response) res.status(500).send("Internal server error");
+  if (!response) return res.status(500).send("Internal server error");
 
-  res.status(201).json({ message: "Todo bien" });
+  return res.status(201).json({ message: "Todo bien" });
 };
