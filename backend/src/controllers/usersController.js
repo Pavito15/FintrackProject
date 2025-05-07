@@ -10,6 +10,11 @@ exports.createUser = async (req, res) => {
 
   if (errorCount > 0) return res.status(400).send("Missing information");
 
+  const userWithEmail = await Users.getUserByEmail(data.email);
+  if (userWithEmail) {
+    return res.status(400).send("Email already used");
+  }
+
   const response = await Users.create(data);
 
   if (!response) return res.status(500).send("Internal server error");
