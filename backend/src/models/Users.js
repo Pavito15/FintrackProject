@@ -23,7 +23,7 @@ class Users {
         })
       );
 
-      return true;
+      return newUser;
     } catch (error) {
       console.error(error);
       return false;
