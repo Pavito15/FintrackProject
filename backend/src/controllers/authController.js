@@ -33,7 +33,7 @@ exports.login = async (req, res) => {
           let token = jwt.sign(
             {
               email: email,
-              id: userEmail.id,
+              user_id: userEmail.id,
             },
             process.env.TOKEN_SECRET
           );
