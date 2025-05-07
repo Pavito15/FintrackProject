@@ -1,6 +1,6 @@
-const { QueryCommand } = require("@aws-sdk/client-dynamodb");
 const dynamodb = require("../config/dynamodb");
-const { GetCommand, PutCommand } = require("@aws-sdk/lib-dynamodb");
+const bcrypt = require("bcryptjs");
+const { QueryCommand, PutCommand } = require("@aws-sdk/lib-dynamodb");
 const { randomUUID } = require("crypto");
 
 class Users {
