@@ -35,8 +35,6 @@ exports.deleteMovement = (req, res) => {
 exports.getMovements = (req, res) => {
   Movement.getMovements(req.user_id, (err, results) => {
     if (err) res.status(500).send("Internal server error");
-    if (results.length === 0)
-      res.status(404).json({ message: "No encontrado" });
     res.json(results);
   });
 };
