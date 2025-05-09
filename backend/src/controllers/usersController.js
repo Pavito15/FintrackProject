@@ -19,14 +19,5 @@ exports.createUser = async (req, res) => {
 
   if (!response) return res.status(500).send("Internal server error");
 
-  let token = jwt.sign(
-    {
-      name: response.name,
-      email: response.email,
-      user_id: response.id,
-    },
-    process.env.TOKEN_SECRET
-  );
-
-  return res.status(201).json({ token });
+  return res.status(201).json({ msg: "User created" });
 };

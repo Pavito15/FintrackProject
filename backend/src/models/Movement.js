@@ -11,7 +11,7 @@ const { randomUUID } = require("crypto");
 class Movement {
   static async create(data, callback) {
     try {
-      const { type, description, amount, user_id } = data;
+      const { type, description, amount, date, user_id } = data;
 
       const newMovement = {
         id: randomUUID().replace(/-/g, ""),
@@ -19,7 +19,7 @@ class Movement {
         type,
         description,
         amount,
-        created_at: new Date().toISOString(),
+        date,
       };
 
       await dynamodb.send(
@@ -68,8 +68,10 @@ class Movement {
           },
         })
       );
+      const items = result.Items || [];
+      items.sort((a, b) => b.date.localeCompare(a.date)); // descendente
 
-      callback(false, result.Items || []);
+      callback(false, items || []);
     } catch (error) {
       console.error(error);
       callback(true, error);

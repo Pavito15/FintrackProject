@@ -8,6 +8,7 @@ exports.createMovement = (req, res) => {
   if (!data.type) errorCount += 1;
   if (!data.description) errorCount += 1;
   if (!data.amount) errorCount += 1;
+  if (!data.date) errorCount += 1;
 
   if (errorCount > 0) return res.status(400).send("Missing information");
 

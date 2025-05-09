@@ -1,11 +1,12 @@
 class MovementsAPI {
   static urlBase = "http://3.21.22.144/movements";
 
-  static async CreateMovement(type, description, amount) {
+  static async CreateMovement(type, description, amount, date) {
     let response = await Request.post(this.urlBase, {
       type,
       description,
       amount,
+      date,
     });
     return response;
   }

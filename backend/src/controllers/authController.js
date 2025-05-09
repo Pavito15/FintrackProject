@@ -36,7 +36,7 @@ exports.login = async (req, res) => {
             },
             process.env.TOKEN_SECRET
           );
-          return res.send({ token });
+          return res.status(200).send({ token });
         } else {
           return res.status(404).send("Bad password");
         }
