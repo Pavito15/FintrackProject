@@ -12,9 +12,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       (data) => (document.getElementById("footer-placeholder").innerHTML = data)
     );
 
-  // Simulación de datos de gastos
-  const expenses = await MovementsAPI.GetMovements();
-
   const expenseList = document.getElementById("expenseList");
 
   function renderExpenses(data) {
@@ -44,5 +41,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  renderExpenses(expenses);
+  const response = await MovementsAPI.GetMovements();
+  handleResponse(
+    async () => {
+      expensese = await response.json();
+      renderExpenses(expenses);
+    },
+    response,
+    200
+  );
 });
