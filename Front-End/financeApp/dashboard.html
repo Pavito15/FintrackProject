@@ -1,57 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard - Personal Finance App</title>
-  <link rel="stylesheet" href="assets/css/global.css" />
-  <link rel="stylesheet" href="assets/css/dashboard.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Personal Finance App</title>
+    <link rel="stylesheet" href="assets/css/global.css" />
+    <link rel="stylesheet" href="assets/css/dashboard.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
 
-  <!-- Navbar -->
-  <div id="navbar-placeholder"></div>
+    <div class="container dashboard-container">
+      <header class="dashboard-header">
+        <h1>Hello, <span id="username">User</span> 👋</h1>
+        <p>Your financial overview at a glance</p>
+      </header>
 
-  <div class="container dashboard-container">
-    <header class="dashboard-header">
-      <h1>Hello, <span id="username">User</span> 👋</h1>
-      <p>Your financial overview at a glance</p>
-    </header>
+      <!-- Summary Cards -->
+      <section class="summary-cards">
+        <div class="card income-card">
+          <h3>Total Income</h3>
+          <p>$4,200.00</p>
+        </div>
+        <div class="card expense-card">
+          <h3>Total Expenses</h3>
+          <p>$2,750.00</p>
+        </div>
+        <div class="card balance-card">
+          <h3>Balance</h3>
+          <p>$1,450.00</p>
+        </div>
+      </section>
 
-    <!-- Summary Cards -->
-    <section class="summary-cards">
-      <div class="card income-card">
-        <h3>Total Income</h3>
-        <p>$4,200.00</p>
+      <!-- Buttons -->
+      <div class="dashboard-buttons">
+        <a href="add-expense.html" class="btn-primary">+ Add Expense</a>
+        <a href="history.html" class="btn-secondary">View History</a>
       </div>
-      <div class="card expense-card">
-        <h3>Total Expenses</h3>
-        <p>$2,750.00</p>
-      </div>
-      <div class="card balance-card">
-        <h3>Balance</h3>
-        <p>$1,450.00</p>
-      </div>
-    </section>
-
-    <!-- Buttons -->
-    <div class="dashboard-buttons">
-      <a href="add-expense.html" class="btn-primary">+ Add Expense</a>
-      <a href="history.html" class="btn-secondary">View History</a>
     </div>
 
-    <!-- Placeholder for future graphs -->
-    <section class="dashboard-graph">
-      <h2>Spending by Category</h2>
-      <canvas id="expenseChart"></canvas>
-    </section>
-  </div>
-
-  <!-- Footer -->
-  <div id="footer-placeholder"></div>
-
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/dashboard.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</body>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </body>
 </html>
