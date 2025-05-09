@@ -61,10 +61,8 @@
 
           handleResponse(
             async () => {
-              let token = await response.json();
-              console.log(token);
-              /* alert("Account created! Redirecting to login...");
-              window.location.href = "index.html"; */
+              alert("Account created! Redirecting to login...");
+              window.location.href = "index.html";
             },
             response,
             201

@@ -72,7 +72,18 @@
           handleResponse(
             async () => {
               let token = await response.json();
-              console.log(token);
+              let auth = await response.json();
+              var now = new Date();
+              var expireDate = new Date(
+                now.getFullYear() + 1,
+                now.getMonth(),
+                now.getDate()
+              );
+              document.cookie =
+                `userToken=${auth.token}; expires=` +
+                expireDate.toUTCString() +
+                "; path=/";
+              window.location.replace("/dashboard.html");
             },
             response,
             200
