@@ -55,11 +55,29 @@
       </main>
     </div>
 
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/request/index.js"></script>
     <script src="assets/js/common/index.js"></script>
+    <script src="assets/js/request/index.js"></script>
+    <script src="assets/js/api/authapi.js"></script>
     <script>
-      console.log(testAPI());
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          let response = await AuthAPI.login(email, password);
+
+          handleResponse(
+            async () => {
+              let token = await response.json();
+              console.log(token);
+            },
+            response,
+            200
+          );
+        });
     </script>
   </body>
 </html>
