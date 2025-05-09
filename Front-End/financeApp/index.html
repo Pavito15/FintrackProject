@@ -71,7 +71,6 @@
 
           handleResponse(
             async () => {
-              let token = await response.json();
               let auth = await response.json();
               var now = new Date();
               var expireDate = new Date(
