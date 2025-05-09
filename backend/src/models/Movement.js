@@ -68,8 +68,10 @@ class Movement {
           },
         })
       );
+      const items = result.Items || [];
+      items.sort((a, b) => b.date.localeCompare(a.date)); // descendente
 
-      callback(false, result.Items || []);
+      callback(false, items || []);
     } catch (error) {
       console.error(error);
       callback(true, error);
