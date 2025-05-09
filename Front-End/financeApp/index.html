@@ -1,37 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personal Finance Manager - Login</title>
-  <link rel="stylesheet" href="assets/css/global.css">
-  <link rel="stylesheet" href="assets/css/forms.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Finance Manager - Login</title>
+    <link rel="stylesheet" href="assets/css/global.css" />
+    <link rel="stylesheet" href="assets/css/forms.css" />
+  </head>
+  <body>
+    <div class="container login-container">
+      <header>
+        <img
+          src="assets/img/logo.png"
+          alt="App Logo"
+          class="logo"
+          style="
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+            display: block;
+            margin: 0 auto;
+          "
+        />
+        <h1>Welcome to Your Finance Tracker</h1>
+        <p>Take control of your money with smart expense management.</p>
+      </header>
 
-  <div class="container login-container">
-    <header>
-      <img src="assets/img/logo.png" alt="App Logo" class="logo" style="max-width: 100%; height: auto; max-height: 150px; display: block; margin: 0 auto;">      <h1>Welcome to Your Finance Tracker</h1>
-      <p>Take control of your money with smart expense management.</p>
-    </header>
+      <main>
+        <form id="loginForm" class="login-form">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            required
+            placeholder="example@domain.com"
+          />
 
-    <main>
-      <form id="loginForm" class="login-form">
-        <label for="email">Email</label>
-        <input type="email" id="email" required placeholder="example@domain.com">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            required
+            placeholder="Enter your password"
+          />
 
-        <label for="password">Password</label>
-        <input type="password" id="password" required placeholder="Enter your password">
+          <button type="submit" class="btn-primary">Login</button>
+        </form>
 
-        <button type="submit" class="btn-primary">Login</button>
-      </form>
+        <div class="register-link">
+          <p>
+            Don't have an account? <a href="register.html">Register here</a>
+          </p>
+        </div>
+      </main>
+    </div>
 
-      <div class="register-link">
-        <p>Don't have an account? <a href="register.html">Register here</a></p>
-      </div>
-    </main>
-  </div>
-
-  <script src="assets/js/main.js"></script>
-</body>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/JS/request/index.js"></script>
+    <script src="assets/JS/common/index.js"></script>
+    <script>
+      console.log(testAPI());
+    </script>
+  </body>
 </html>
