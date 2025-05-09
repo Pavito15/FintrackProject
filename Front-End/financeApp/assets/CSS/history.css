@@ -54,3 +54,10 @@
     color: #e74c3c;
   }
   
+  .expense-item .expense_outcome {    
+    color: #e74c3c;
+  }
+  .expense-item .expense_income {    
+    color: #1e8449;
+  }
+  

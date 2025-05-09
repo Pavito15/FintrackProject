@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const response = await MovementsAPI.GetMovements();
   handleResponse(
     async () => {
-      expensese = await response.json();
+      let expenses = await response.json();
       renderExpenses(expenses);
     },
     response,
