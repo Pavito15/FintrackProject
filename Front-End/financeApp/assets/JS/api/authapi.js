@@ -1,5 +1,5 @@
 class AuthAPI {
-  static url = "http://3.21.22.144/auth";
+  static url = "http://ec2-3-21-22-144.us-east-2.compute.amazonaws.com/auth";
 
   static logout() {
     if (window.confirm("¿Estás seguro de querer cerrar sesión?")) {

@@ -11,7 +11,7 @@ const port = 80;
 const app = express();
 app.use(
   cors({
-    origin: "http://3.15.53.35", // IP pública de tu frontend
+    origin: "http://ec2-3-15-53-35.us-east-2.compute.amazonaws.com", // IP pública de tu frontend
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
