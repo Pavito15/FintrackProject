@@ -1,35 +1,36 @@
-const Movements = require('../models/Math');
+const Movement = require("../models/Movement");
 
 exports.getTotalincome = async (req, res) => {
-    const {user_id} = req.query;
+  const { user_id } = req.query;
 
-    if (!user_id) return res.status(400).json({ error: "user_id es requerido"});
+  if (!user_id) return res.status(400).json({ error: "user_id es requerido" });
 
-    Movement.getMovements(user_id, (err, movements) => {
-        if (err) return res.status(500).json({ error: "Error al obtener movimientos "})
+  Movement.getMovements(user_id, (err, movements) => {
+    if (err)
+      return res.status(500).json({ error: "Error al obtener movimientos " });
 
-        const incomeTotal = movements
-            .filter(m => m.type === 'ingreso')
-            .reduce((sum, m) => sum + Number(m.amount), 0);
+    const incomeTotal = movements
+      .filter((m) => m.type === "ingreso")
+      .reduce((sum, m) => sum + Number(m.amount), 0);
 
-        res.json({total_income: incomeTotal});
-    });
+    res.json({ total_income: incomeTotal });
+  });
 };
 
-exports.getTotalExpenses = async(req, res) => {
-    const {user_id} = req.query;
-    if (!user_id) return res.status(400).json({ error: "user_id es requerido"});
+exports.getTotalExpenses = async (req, res) => {
+  const { user_id } = req.query;
+  if (!user_id) return res.status(400).json({ error: "user_id es requerido" });
 
-   Movement.getMovements(user_id, (err, movements) => {
-        if (err) return res.status(500).json({ error: "Error al obtener movimientos "})
+  Movement.getMovements(user_id, (err, movements) => {
+    if (err)
+      return res.status(500).json({ error: "Error al obtener movimientos " });
 
-        const expenseTotal = movements
-            .filter(m => m.type === 'egresp')
-            .reduce((sum, m) => sum + Number(m.amount), 0);
+    const expenseTotal = movements
+      .filter((m) => m.type === "egresp")
+      .reduce((sum, m) => sum + Number(m.amount), 0);
 
-        res.json({total_expense: expenseTotal});
-    });    
-
+    res.json({ total_expense: expenseTotal });
+  });
 };
 
 exports.getBalance = async (req, res) => {
@@ -37,14 +38,15 @@ exports.getBalance = async (req, res) => {
   if (!user_id) return res.status(400).json({ error: "user_id es requerido" });
 
   Movement.getMovements(user_id, (err, movements) => {
-    if (err) return res.status(500).json({ error: "Error obteniendo movimientos" });
+    if (err)
+      return res.status(500).json({ error: "Error obteniendo movimientos" });
 
     const income = movements
-      .filter(m => m.type === 'ingreso')
+      .filter((m) => m.type === "ingreso")
       .reduce((sum, m) => sum + Number(m.amount), 0);
 
     const expense = movements
-      .filter(m => m.type === 'egreso')
+      .filter((m) => m.type === "egreso")
       .reduce((sum, m) => sum + Number(m.amount), 0);
 
     const balance = income - expense;
