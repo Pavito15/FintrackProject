@@ -88,6 +88,13 @@
             200
           );
         });
+
+      async function CheckLogged() {
+        let response = await AuthAPI.checkLog();
+        if (response.status == 200) {
+          window.location.replace("/dashboard.html");
+        }
+      }
     </script>
   </body>
 </html>
