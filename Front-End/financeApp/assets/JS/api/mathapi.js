@@ -12,7 +12,11 @@ class MathAPI {
         expenses = await expensesResponse.json(),
         balance = await balanceResponse.json();
 
-      return { incomes, expenses, balance };
+      return {
+        incomes: incomes.total_income,
+        expenses: expenses.total_expense,
+        balance: balance.balance,
+      };
     } catch (error) {
       alert("Ha ocurrido un error");
       window.location.replace("/");
