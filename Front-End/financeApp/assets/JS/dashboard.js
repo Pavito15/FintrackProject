@@ -1,3 +1,7 @@
+function formatNumberWithCommas(number) {
+  return number.toLocaleString("en-US");
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   // Load navbar and footer dynamically
   fetch("components/navbar.html")
@@ -7,10 +11,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
 
   let { incomes, expenses, balance } = await MathAPI.GetData();
-  console.log(incomes);
-  console.log(expenses);
-  console.log(balance);
-  document.getElementById("totalIncome").innerText = incomes;
-  document.getElementById("totalExpenses").innerText = expenses;
-  document.getElementById("balance").innerText = balance;
+  document.getElementById("totalIncome").innerText = `$${formatNumberWithCommas(
+    incomes
+  )}`;
+  document.getElementById(
+    "totalExpenses"
+  ).innerText = `$${formatNumberWithCommas(expenses)}`;
+  document.getElementById("balance").innerText = `$${formatNumberWithCommas(
+    balance
+  )}`;
 });

@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     handleResponse(
       async () => {
         alert("Expense saved!");
-        window.location.replace("/dashboard.html");
+        window.location.replace("/history.html");
       },
       response,
       201

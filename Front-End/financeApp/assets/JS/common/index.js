@@ -5,7 +5,7 @@ async function handleResponse(func, response, successStatus) {
     let data = await response.json();
     alert([data.errors]);
   } else if (response.status == 500) {
-    window.location.replace("/");
+    window.location.replace("/index.html");
   } else {
     alert("Ha ocurrido un error");
   }

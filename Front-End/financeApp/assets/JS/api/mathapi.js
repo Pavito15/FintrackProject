@@ -19,7 +19,7 @@ class MathAPI {
       };
     } catch (error) {
       alert("Ha ocurrido un error");
-      window.location.replace("/");
+      window.location.replace("/index.html");
     }
   }
 }
