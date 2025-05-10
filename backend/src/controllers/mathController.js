@@ -1,6 +1,6 @@
 const Movement = require("../models/Movement");
 
-exports.getTotalincome = async (req, res) => {
+exports.getTotalIncome = async (req, res) => {
   const { user_id } = req.query;
 
   if (!user_id) return res.status(400).json({ error: "user_id es requerido" });
@@ -33,7 +33,7 @@ exports.getTotalExpenses = async (req, res) => {
   });
 };
 
-exports.getBalance = async (req, res) => {
+exports.getTotalBalance = async (req, res) => {
   const { user_id } = req.query;
   if (!user_id) return res.status(400).json({ error: "user_id es requerido" });
 

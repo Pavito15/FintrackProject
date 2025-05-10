@@ -6,6 +6,7 @@ const cors = require("cors");
 const movementRoutes = require("./src/routes/movements");
 const usersRoutes = require("./src/routes/users");
 const authRoutes = require("./src/routes/auth");
+const mathRoutes = require("./src/routes/math");
 
 const port = 80;
 const app = express();
@@ -23,6 +24,7 @@ app.use(cookieParser());
 
 app.use("/movements", movementRoutes);
 app.use("/users", usersRoutes);
+app.use("/math", mathRoutes);
 app.use("/auth", authRoutes);
 
 app.get("/", (req, res) => res.send("FinTrack Backend Running"));

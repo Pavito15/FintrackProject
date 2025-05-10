@@ -3,10 +3,9 @@ class AuthAPI {
 
   static logout() {
     if (window.confirm("¿Estás seguro de querer cerrar sesión?")) {
-      localStorage.removeItem("usertype");
       document.cookie =
         "userToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      window.location.replace("/");
+      window.location.replace("/index.html");
     }
   }
 
