@@ -10,7 +10,7 @@ exports.getTotalIncome = async (req, res) => {
       return res.status(500).json({ error: "Error al obtener movimientos " });
 
     const incomeTotal = movements
-      .filter((m) => m.type === "ingreso")
+      .filter((m) => m.type === "income")
       .reduce((sum, m) => sum + Number(m.amount), 0);
 
     res.json({ total_income: incomeTotal });
@@ -26,7 +26,7 @@ exports.getTotalExpenses = async (req, res) => {
       return res.status(500).json({ error: "Error al obtener movimientos " });
 
     const expenseTotal = movements
-      .filter((m) => m.type === "egresp")
+      .filter((m) => m.type === "outcome")
       .reduce((sum, m) => sum + Number(m.amount), 0);
 
     res.json({ total_expense: expenseTotal });
@@ -42,11 +42,11 @@ exports.getTotalBalance = async (req, res) => {
       return res.status(500).json({ error: "Error obteniendo movimientos" });
 
     const income = movements
-      .filter((m) => m.type === "ingreso")
+      .filter((m) => m.type === "income")
       .reduce((sum, m) => sum + Number(m.amount), 0);
 
     const expense = movements
-      .filter((m) => m.type === "egreso")
+      .filter((m) => m.type === "outcome")
       .reduce((sum, m) => sum + Number(m.amount), 0);
 
     const balance = income - expense;
